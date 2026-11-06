@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bhaktapur Voxel Diorama</title>
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; }
+      body { background: radial-gradient(ellipse at 50% 42%, #efe7db 0%, #ddd2c3 55%, #c9bcab 100%); }
+      canvas { display: block; }
+      .caption {
+        position: fixed; left: 24px; bottom: 20px; font: 500 13px/1.4 Georgia, serif;
+        color: #5b4a3c; letter-spacing: 0.04em; pointer-events: none;
+      }
+      .caption b { display: block; font-size: 17px; font-weight: 600; letter-spacing: 0.06em; }
+      canvas { cursor: grab; touch-action: none; }
+      canvas:active { cursor: grabbing; }
+      body.fp canvas { cursor: crosshair; }
+      .hud { position: fixed; right: 20px; bottom: 18px; text-align: right; font: 12px/1.5 Georgia, serif; color: #5b4a3c; }
+      .seg { display: inline-flex; border: 1px solid rgba(91, 74, 60, 0.3); border-radius: 18px; overflow: hidden;
+        background: rgba(250, 244, 235, 0.75); backdrop-filter: blur(4px); margin-bottom: 8px; }
+      .seg button { font: 600 12px Georgia, serif; letter-spacing: 0.05em; color: #5b4a3c; background: none;
+        border: 0; padding: 7px 14px; cursor: pointer; }
+      .seg button + button { border-left: 1px solid rgba(91, 74, 60, 0.2); }
+      .seg button.on { background: #5b4a3c; color: #f6eee2; }
+      .seg button:focus-visible { outline: 2px solid #c98a2a; outline-offset: -2px; }
+      #hint { max-width: 46ch; margin-left: auto; padding: 4px 10px; border-radius: 10px; background: rgba(250, 244, 235, 0.6); backdrop-filter: blur(4px); }
+      body.fp #hint { color: #f6eee2; background: rgba(40, 30, 24, 0.45); }
+      kbd { font: 600 10.5px ui-monospace, monospace; padding: 0 4px; border: 1px solid rgba(91, 74, 60, 0.35);
+        border-radius: 3px; background: rgba(255, 255, 255, 0.45); }
+      body.fp kbd { border-color: rgba(246, 238, 226, 0.5); background: rgba(0, 0, 0, 0.25); }
+      .place { position: fixed; top: 22px; left: 50%; transform: translate(-50%, -6px); text-align: center;
+        font: italic 13px Georgia, serif; color: #5b4a3c; opacity: 0; transition: opacity 0.6s, transform 0.6s; pointer-events: none; }
+      .place b { display: block; font: 600 19px Georgia, serif; letter-spacing: 0.08em; font-style: normal; }
+      .place.show { opacity: 1; transform: translate(-50%, 0); }
+      body.fp .place, body.fp .caption { color: #f6eee2; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55); }
+      #reticle { position: fixed; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px; border-radius: 50%;
+        background: rgba(255, 250, 240, 0.85); box-shadow: 0 0 2px rgba(0, 0, 0, 0.6); display: none; pointer-events: none; }
+      body.fp #reticle { display: block; }
+      @media (max-width: 640px) { #hint { display: none; } .caption { bottom: 64px; left: 16px; } .hud { right: 16px; } }
+    </style>
+  </head>
+  <body>
+    <div id="place" class="place"><b></b><span></span></div>
+    <div id="reticle"></div>
+    <div class="hud">
+      <div class="seg"><button id="bIso" class="on">Diorama</button><button id="bFp">Walk in</button><button id="bHome" title="Reset view (H)" aria-label="Reset view">&#x27F2;</button></div>
+      <div id="hint"></div>
+    </div>
+    <div class="caption"><b>Bhaktapur</b>Taumadhi &amp; Durbar Square · Kathmandu Valley</div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
